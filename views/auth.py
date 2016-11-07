@@ -16,7 +16,7 @@ def before_request():
     pass
 
 
-@instance.route('/admin', methods=['GET', 'POST'])
+@instance.route('/user/admin', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         return render_template('login.html')  # 登录页
@@ -40,7 +40,7 @@ def login():
     return url_for('index.index')
 
 
-@instance.route('/logout')
+@instance.route('/user/logout')
 @login_required
 def logout():
     current_user.logout()

@@ -11,7 +11,6 @@ def before_request():
     pass
 
 
-@instance.route('/', methods=['GET'])
-@instance.route('/home', methods=['GET'])
-def index():
-    return render_template('index.html')  # 主页
+@instance.route('/<category>', methods=['GET'])
+def index(category):
+    return render_template('index.html', catelog=category)  # 主页

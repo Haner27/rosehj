@@ -11,7 +11,6 @@ def before_request():
     pass
 
 
-@instance.route('/', methods=['GET'])
-@instance.route('/<category>', methods=['GET'])
-def index(category=None):
-    return render_template('index.html', catelog=category)  # 主页
+@instance.route('/<regex(".*"):path>', methods=['GET'])
+def index(path=None):
+    return render_template('index.html', path=path)  # 主页

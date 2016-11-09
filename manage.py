@@ -1,6 +1,7 @@
 # -*- coding: utf8 -*-
 from __future__ import unicode_literals
 
+from flask import request, render_template
 from flask_script import Manager, Server
 
 from app import create_app

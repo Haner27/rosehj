@@ -108,7 +108,7 @@ def article_edit():
     text                # 内容
     author_id           # 作者
     from_id             # 大分类
-    tags                # 标签ID列表
+    # tags                # 标签ID列表
     :return:
     """
     if request.method == 'GET':
@@ -127,9 +127,9 @@ def article_edit():
     if not from_id:
         return res(Errors.PARAMS_REQUIRED)
 
-    tags = request.form.getlist('tags[]', [])
-    if not tags:
-        return res(Errors.PARAMS_REQUIRED)
+    # tags = request.form.getlist('tags[]', [])
+    # if not tags:
+    #     return res(Errors.PARAMS_REQUIRED)
 
     c = Content.objects(id=content_id, deleted_at=None).first()
     mode = 'update'
@@ -141,7 +141,7 @@ def article_edit():
     c.text = text
     c.author_id = current_user.id
     c.from_id = from_id
-    c.tags = tags
+    # c.tags = tags
     c.save()
 
     if mode == 'new':
@@ -179,64 +179,64 @@ def article_delete():
     return res()
 
 
-@instance.route('/tags/index', methods=['POST'])
-def tag_index():
-    """
-    标签加载
-    :return:
-    """
-
-    ts = Tag.objects(deleted_at=None)
-    data = [t.as_dict() for t in ts]
-    return res(data=data)
-
-
-@instance.route('/tags/edit', methods=['POST'])
-@login_required
-def tag_edit():
-    """
-    新建/编辑标签
-    tag_id         标签ID   （可选, 编辑时必填）
-    name           标签名
-    :return:
-    """
-    tag_id = request.form.get('tag_id')
-    if not tag_id:
-        return res(Errors.PARAMS_REQUIRED)
-
-    name = request.form.get('name')
-    if not name:
-        return res(Errors.PARAMS_REQUIRED)
-
-    t = Tag.objects(id=tag_id, deleted_at=None).first()
-    if not t:
-        t = Tag()
-
-    t.name = name
-    t.save()
-    return res(data=t.as_dict())
-
-
-@instance.route('/tags/delete', methods=['POST'])
-@login_required
-def tag_delete():
-    """
-    删除标签
-    tag_id         标签ID   （可选, 编辑时必填）
-    name           标签名
-    :return:
-    """
-    tag_id = request.form.get('tag_id')
-    if not tag_id:
-        return res(Errors.PARAMS_REQUIRED)
-
-    t = Tag.objects(id=tag_id, deleted_at=None).first()
-    if not t:
-        return res(Errors.NOT_FOUND)
-
-    t.deleted_at = now_lambda()
-    t.save()
-    return res()
+# @instance.route('/tags/index', methods=['POST'])
+# def tag_index():
+#     """
+#     标签加载
+#     :return:
+#     """
+#
+#     ts = Tag.objects(deleted_at=None)
+#     data = [t.as_dict() for t in ts]
+#     return res(data=data)
+#
+#
+# @instance.route('/tags/edit', methods=['POST'])
+# @login_required
+# def tag_edit():
+#     """
+#     新建/编辑标签
+#     tag_id         标签ID   （可选, 编辑时必填）
+#     name           标签名
+#     :return:
+#     """
+#     tag_id = request.form.get('tag_id')
+#     if not tag_id:
+#         return res(Errors.PARAMS_REQUIRED)
+#
+#     name = request.form.get('name')
+#     if not name:
+#         return res(Errors.PARAMS_REQUIRED)
+#
+#     t = Tag.objects(id=tag_id, deleted_at=None).first()
+#     if not t:
+#         t = Tag()
+#
+#     t.name = name
+#     t.save()
+#     return res(data=t.as_dict())
+#
+#
+# @instance.route('/tags/delete', methods=['POST'])
+# @login_required
+# def tag_delete():
+#     """
+#     删除标签
+#     tag_id         标签ID   （可选, 编辑时必填）
+#     name           标签名
+#     :return:
+#     """
+#     tag_id = request.form.get('tag_id')
+#     if not tag_id:
+#         return res(Errors.PARAMS_REQUIRED)
+#
+#     t = Tag.objects(id=tag_id, deleted_at=None).first()
+#     if not t:
+#         return res(Errors.NOT_FOUND)
+#
+#     t.deleted_at = now_lambda()
+#     t.save()
+#     return res()
 
 
 @instance.route('/article/comment', methods=['POST'])

@@ -159,7 +159,7 @@ class Content(BaseDocument):
     text = StringField()  # 内容
     author_id = StringField()  # 作者
     from_id = IntField(default=FROM_HJ_WORLD, choices=FROM_IDS)  # 来源
-    tags = ListField(StringField(), default=[])
+    # tags = ListField(StringField(), default=[])
 
     meta = {
         'collection': 'content',

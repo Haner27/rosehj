@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 from __future__ import unicode_literals
 
-from flask import Blueprint, render_template, jsonify, request, url_for, redirect
+from flask import Blueprint, render_template, jsonify, request, url_for, redirect, make_response
 from flask_login import login_required, current_user
 
 from models.user import User
@@ -44,7 +44,14 @@ def login():
 @login_required
 def logout():
     current_user.logout()
-    return redirect(url_for('index.index'))
+    cookies = request.cookies # 获取服务器cookie
+    if 'islogin' in cookies:
+        del cookies['islogin']
+
+    response = make_response('ssss') # 创建一个响应对象
+    response.set_cookie('1', '1', 2) # 设置cookie， 键值对和过期时间（秒数）
+    response.status_code = 200 # 设置状态码
+    return response
 
 
 @instance.route('/user/add/<username>/<password>')

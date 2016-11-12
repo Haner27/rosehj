@@ -1,4 +1,4 @@
 import hashlib
-content = 'liaoxiao'
-salt = '*^)h#a&n@#$;.'
-print hashlib.md5(content + salt).hexdigest()
+import random
+from datetime import datetime
+print '{0}{1}'.format(datetime.now().strftime('%Y%m%d%H%M%S'), str(random.randint(100, 999)))

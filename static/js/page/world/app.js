@@ -8,7 +8,11 @@ define("js/page/world/app",[
             "init":function () {
                 articleList.init({
                     "parent":$("[site-content]"),
-                    "query":{}
+                    "query":{
+                        "from_id":1,
+                        "page":1,
+                        "per_page":10
+                    }
                 })
             },
         }

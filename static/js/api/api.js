@@ -4,8 +4,9 @@ define("js/api/api",[
     var api = {
         "queryArticle":function (params) {
             return $.ajax({
-                "url":"../static/db/ar.json",
-                "type":"get",
+                "url":"/article/index",
+                "type":"post",
+                "data":params,
                 "error":function () {
                     console.log("queryArticle error")
                 }

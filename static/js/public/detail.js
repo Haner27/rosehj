@@ -17,34 +17,62 @@ define("js/public/detail",[
                     this["id"]=id||this.id;
                     this.parent.hide()
                     api.queryDetail(this.id).done(function (data) {
-                        data = {}
-                        self.__renderDetail(data)
-                        self.parent.stop().fadeIn(1000)
+                        if(data["code"]==0){
+                            self.__renderDetail(data["detail"])
+                            self.parent.stop().fadeIn(1000)
+                        }else{
+                            alert(data["error"])
+                        }
                     })
 
                 },
+                getType:function (id) {
+                    if(id==1){
+                        return "HJ`S World"
+                    }else if(id==2){
+                        return "Fashion"
+                    }else if(id==3){
+                        return "Contact"
+                    }
+                },
+                getLink:function (name) {
+                    var links = {
+                        "HJ`S World":"/w",
+                        "Fashion":"/f",
+                        "Contact":"/c"
+                    }
+                    return links[name]
+                },
                 "__renderDetail":function (data) {
-                   var html = '<div class="site-detail">'+
+                    var curData = data["data"],
+                        typeName = this.getType(curData["from_id"]),
+                        nextAndPrev="",
+                        nextData=data["next_data"],
+                        prevData=data["pre_data"];
+                    if(prevData){
+                        nextAndPrev +='<a class="prev" href="/d/'+prevData["_id"]+'"><span>←</span>'+prevData["title"]+'</a>';
+                    }
+                    if(nextData){
+                        nextAndPrev+='<a class="next" href="/d/'+nextData["_id"]+'">'+nextData["title"]+'<span>→</span></a>'
+                    }
+                    var html = '<div class="site-detail">'+
                                    '<article class="site-content-card">'+
                                         '<header>'+
-                                            '<h2>Valentino Spring Summer 2017 Fashion Show</h2>'+
-                                            '<p class="site-content-card-author">Published by bryanboy</p>'+
+                                            '<h2>'+curData["title"]+'</h2>'+
+                                            '<p class="site-content-card-author">Published by '+curData["author_name"]+'</p>'+
                                         '</header>'+
                                         '<div class="site-content-card-detail">'+
-                                            '<p>Pierpaolo Piccioli will present his solo, spring summer 2017 womenswear debut at Valentino this afternoon in Paris. Don’t forget to tune in and watch the fashion show livestream at 3:00PM Paris time (that’s 9:00AM New York time).</p>'+
-                                            '<img src="../img/photo/1.png">'+
-                                            '<p>See you at the show!</p>'+
+                                            curData["text"]+
                                         '</div>'+
                                         '<footer>'+
-                                            '<div>September 14, 2016 — <a>comments 2</a></div>'+
-                                            '<div>Fashion, Shows</div>'+
-                                            '<div><a>Permalink</a></div>'+
+                                            '<div>'+curData["created_at"]+' — <a>comments '+curData["comments"].length+'</a></div>'+
+                                            '<div><a href="'+this.getLink(typeName)+'">'+typeName+'</a></div>'+
+                                            '<div><a href="'+window.location.href+'">Permalink</a></div>'+
                                         '</footer>'+
-                                        '</article>'+
-                                        '<div class="page">' +
-                                             '<a class="prev"><span>←</span>sadf haha prev</a>'+
-                                            '<a class="next">dd next<span>→</span></a>'+
-                                        '</div>'
+                                   '</article>'+
+                                   '<div class="page">'+
+                                        nextAndPrev+
+                                   '</div>'+
                                 '</div>'
                     this.parent.html(html)
                 }

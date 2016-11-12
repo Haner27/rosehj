@@ -43,7 +43,7 @@ define("js/common/page",[
         this.option.callback&&this.option.callback(this)
     }
     Page.prototype.__countTotalPage = function () {
-        this.option.totalPage = this.option.total/this.option.pageSize;
+        this.option.totalPage = Math.ceil(this.option.total/this.option.pageSize);
     }
     Page.prototype.validate = function (page) {
         if(page > this.option.totalPage){

@@ -26,6 +26,7 @@ define("js/public/articleList",[
                     this.wrap.html(this.parent);
                     this.page = page({
                         "parent":this.parent.find("#page"),
+                        "pageSize":this.queryParms["per_page"],
                         "callback":function (page) {
                             _this.toPage(page.option.current)
                         }
@@ -37,13 +38,17 @@ define("js/public/articleList",[
                     self.wrap.hide();
                     queryParams&&$.extend(this.queryParms,queryParams);
                     api.queryArticle(this.queryParms).done(function (data) {
-                        data = [1,2,3,4,5,6]
-                        self.__render(data)
-                        self.page.render({
-                            "total":17,
-                            "current":1
-                        })
-                        self.wrap.fadeIn(1200)
+                        if(data["code"]==0){
+                            var detail = data["detail"];
+                            self.__render(detail["data"])
+                            self.page.render({
+                                "total":detail["total"],
+                                "current":detail["page"]
+                            })
+                            self.wrap.fadeIn(1200)
+                        }else{
+                            alert(data["error"])
+                        }
                     })
 
                 },

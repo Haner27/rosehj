@@ -1,6 +1,7 @@
 define("js/public/article",[
-    "jquery"
-],function ($) {
+    "jquery",
+    "js/common/type"
+],function ($,type) {
     function Article(params) {
         this.params = $.extend({},params)
     }
@@ -8,20 +9,19 @@ define("js/public/article",[
         
     }
     Article.prototype.getHtml = function () {
+        var typeName = type.getType(this.params.from_id),typeLink = type.getLink(typeName);
         var html = '<article class="site-content-card">'+
                         '<header>'+
-                            '<h2>Valentino Spring Summer 2017 Fashion Show</h2>'+
-                            '<p class="site-content-card-author">Published by bryanboy</p>'+
+                            '<h2><a href="/d/'+this.params._id+'">'+this.params.title+'</a></h2>'+
+                            '<p class="site-content-card-author">Published by '+this.params.author_name+'</p>'+
                         '</header>'+
                         '<div class="site-content-card-detail">'+
-                            '<p>Pierpaolo Piccioli will present his solo, spring summer 2017 womenswear debut at Valentino this afternoon in Paris. Don’t forget to tune in and watch the fashion show livestream at 3:00PM Paris time (that’s 9:00AM New York time).</p>'+
-                            '<img src="../img/photo/1.png">'+
-                            '<p>See you at the show!</p>'+
+                            this.params.text+
                         '</div>'+
                         '<footer>'+
-                            '<div>September 14, 2016 — <a>comments 2</a></div>'+
-                            '<div>Fashion, Shows</div>'+
-                            '<div><a>Permalink</a></div>'+
+                            '<div>'+this.params.created_at+' — <a>comments '+this.params.comments.length+'</a></div>'+
+                            '<div><a href="'+typeLink+'">'+typeName+'</a></div>'+
+                            '<div><a href="/d/'+this.params._id+'">Permalink</a></div>'+
                         '</footer>'+
                 '</article>'
         return html;

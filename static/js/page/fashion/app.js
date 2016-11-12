@@ -6,9 +6,13 @@ define("js/page/fashion/app",[
     function ($,page,articleList) {
         var app = {
             "init":function () {
-                articleList.init({
+               articleList.init({
                     "parent":$("[site-content]"),
-                    "query":{}
+                    "query":{
+                        "from_id":2,
+                        "page":1,
+                        "per_page":10
+                    }
                 })
             },
         }

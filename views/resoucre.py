@@ -53,6 +53,7 @@ def article_index():
     page              页
     from_id           分类（0:全部 1:hj's world 2:fashion）
     tag_id            标签ID
+    per_page          每页几个
     :return:
     """
 
@@ -61,14 +62,14 @@ def article_index():
     if from_id:
         conditions.update(from_id=from_id)
 
-    tag_id = request.form.get('tag_id')
-    if tag_id:
-        conditions.update(tags=tag_id)
+    per_page = request.form.get('per_page', 10, int)
+    # tag_id = request.form.get('tag_id')
+    # if tag_id:
+    #     conditions.update(tags=tag_id)
 
     page = request.form.get('page', 1, int)
 
     cs = Content.objects(**conditions).order_by('-created_at')
-    per_page = 10
     total = cs.count()
     data = [c.as_dict() for c in cs[per_page * (page - 1): per_page * page]]
     return res(data=dict(data=data, page=page, total=total))

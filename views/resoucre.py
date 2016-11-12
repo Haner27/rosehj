@@ -111,12 +111,10 @@ def article_edit():
     tags                # 标签ID列表
     :return:
     """
-    content_id = request.args.get('content_id') or request.form.get('content_id')
     if request.method == 'GET':
-        if not content_id:
-            return res(Errors.PARAMS_REQUIRED)
         return render_template('edit.html')
 
+    content_id = request.form.get('content_id')
     title = request.form.get('title')
     if not title:
         return res(Errors.PARAMS_REQUIRED)

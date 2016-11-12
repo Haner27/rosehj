@@ -56,10 +56,10 @@ require([
                     api.submitArticle(data).done(function (data) {
                         var a = data;
                         if(data["code"]==0){
-                            // setTimeout(function () {
-                            //     var location = window.location,id=data["detail"]["_id"]||this.id;
-                            //     location.href = "/d/"+id
-                            // },1000)
+                            setTimeout(function () {
+                                 var location = window.location,id=data["detail"]["_id"]||this.id;
+                                 location.href = "/d/"+id
+                            },1000)
                         }
 
                     })

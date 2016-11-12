@@ -1,5 +1,16 @@
 # -*- coding: utf8 -*-
 from __future__ import unicode_literals
+import re
+import json
+import os
+
+
+def _build_ueditor_config():
+    with open("{0}/ueditor_config.json".format(os.path.dirname(__file__))) as f:
+        # 删除 `/**/` 之间的注释
+        temp = json.loads(re.sub(r'/\*(?:[^*]|\*(?!/))*\*/', '', f.read().decode('utf8')))
+    return temp
+
 
 
 class Config(object):
@@ -7,6 +18,8 @@ class Config(object):
     SECRET_KEY = 'h!a@n#n$e%n^g&f*a(n)g_i+n.k'
     # 加密salt
     SALT = '*^)h#a&n@#$;.'
+
+    UEDITOR_CONIFG = _build_ueditor_config()
 
     MAIL_SERVER = 'smtp.126.com'
     MAIL_PORT = 25

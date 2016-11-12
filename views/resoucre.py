@@ -148,11 +148,12 @@ def article_edit():
         emails1 = CommentText.objects(notify_new_post=True).distinct('email')
         emails2 = Reply.objects().distinct(notify_new_post=True).distinct('email')
         emails = list(set(emails1 + emails2))
-        body = """
-        Hi, I have new posts, como here >> http://www.baidu.com
-        """
-        e = Email('hjrose', emails, sender=None, subject='Have a new reply!', body=body, html=None)
-        e.send_email()
+        if emails:
+            body = """
+            Hi, I have new posts, como here >> http://www.baidu.com
+            """
+            e = Email('hjrose', emails, sender=None, subject='Have a new reply!', body=body, html=None)
+            e.send_email()
 
     return res(data=c.as_dict())
 

@@ -46,8 +46,6 @@ define("js/router/router",[
         router();
     }
 
-
-
     var routerProxy = {
         "init":function () {
             routerInit();

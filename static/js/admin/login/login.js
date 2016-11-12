@@ -15,11 +15,11 @@ require([
                 var _this=this;
                 this.submit.on("click",function () {
                     var data={
-                        "name":_this.name.val(),
+                        "username":_this.name.val(),
                         "password":Base64.encode(_this.password.val())
                     }
 
-                    api.submitArticle(data).done(function (data) {
+                    api.login(data).done(function (data) {
                         cookie.set("islogin",false)
                         alert("success")
                         setTimeout(function () {

@@ -98,9 +98,9 @@ def article_details():
                          next_data=next.as_dict() if next else None))
 
 
-@instance.route('/article/edit', methods=['GET', 'POST'])
+@instance.route('/article/edit/<content_id>', methods=['GET', 'POST'])
 @login_required
-def article_edit():
+def article_edit(content_id=None):
     """
     文章新建/编辑
     content_id          # 文章ID  （可选, 编辑时必传）
@@ -114,7 +114,6 @@ def article_edit():
     if request.method == 'GET':
         return render_template('edit.html')
 
-    content_id = request.form.get('content_id')
     title = request.form.get('title')
     if not title:
         return res(Errors.PARAMS_REQUIRED)

@@ -54,14 +54,14 @@ class Reply(BaseDocument):
     对评价的回复分2级
     """
     comment_id = StringField()
-    parent_id = StringField(default='')
+    parent_id = StringField()
     content = StringField()
     nickname = StringField()
     email = StringField()
     to_nickname = StringField()
     to_email = StringField()
-    notify_new_post = BooleanField(default=False)
-    notify_follow_up = BooleanField(default=False)
+    notify_new_post = BooleanField()
+    notify_follow_up = BooleanField()
     website = StringField()
 
     meta = {
@@ -93,8 +93,8 @@ class CommentText(BaseDocument):
     content_id = StringField()
     nickname = StringField()
     email = StringField()
-    notify_new_post = BooleanField(default=False)
-    notify_follow_up = BooleanField(default=False)
+    notify_new_post = BooleanField()
+    notify_follow_up = BooleanField()
     website = StringField()
 
     meta = {
@@ -158,7 +158,7 @@ class Content(BaseDocument):
     title = StringField()  # 标题
     text = StringField()  # 内容
     author_id = StringField()  # 作者
-    from_id = IntField(default=FROM_HJ_WORLD, choices=FROM_IDS)  # 来源
+    from_id = IntField(choices=FROM_IDS)  # 来源
     # tags = ListField(StringField(), default=[])
 
     meta = {

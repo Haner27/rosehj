@@ -13,8 +13,11 @@ define("js/api/api",[
         },
         "queryDetail":function (id) {
            return $.ajax({
-                "url":"../db/ar.json",
-                "type":"get",
+                "url":"/article/details",
+                "type":"post",
+                "data":{
+                  "content_id":id
+                },
                 "error":function () {
                     console.log("queryDetail error")
                 }

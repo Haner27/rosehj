@@ -12,7 +12,7 @@ define("js/admin/operate/operate",[
                 }else if(val=="add"){
                    window.location.href="/article/edit"
                 }else if(val=="edit"){
-                     alert(app.getId())
+                     window.location.href="/article/edit?content_id="+app.getId();
                 }else if(val=="delete"){
 
                 }
@@ -35,7 +35,7 @@ define("js/admin/operate/operate",[
             return exg.test(path);
         },
         "getId":function () {
-            var exp = /^(\/d|\/c)(\/[0-9]+)/g,path = window.location.pathname,exc=exp.exec(path)
+            var exp = /^(\/d|\/c)(\/[0-9a-zA-Z]+)/g,path = window.location.pathname,exc=exp.exec(path)
             return exc&&exc[2].split("/")[1]
         },
         "updateView":function () {

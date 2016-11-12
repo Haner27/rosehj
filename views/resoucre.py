@@ -132,7 +132,6 @@ def article_edit():
     # if not tags:
     #     return res(Errors.PARAMS_REQUIRED)
 
-
     c = Content.objects(id=content_id, deleted_at=None).first()
     mode = 'update'
     if not c:

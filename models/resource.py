@@ -148,9 +148,11 @@ class Tag(BaseDocument):
 class Content(BaseDocument):
     FROM_HJ_WORLD = 1
     FROM_FASHION = 2
+    FROM_CONTACT = 3
     FROM_IDS = [
         (FROM_HJ_WORLD, 'HJ\'S WORLD'),
-        (FROM_FASHION, 'FASHION')
+        (FROM_FASHION, 'FASHION'),
+        (FROM_CONTACT, 'CONTACT')
     ]
 
     title = StringField()  # 标题

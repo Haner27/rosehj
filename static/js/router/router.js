@@ -9,9 +9,7 @@ define("js/router/router",[
         var siteContent = $("[site-content]");
         function before() {
             siteContent.html("");
-        }
-        function after() {
-             operate.inspect();
+            operate.inspect();
         }
 
         router('/',function (ctx) {
@@ -19,29 +17,17 @@ define("js/router/router",[
             controller.index.init();
 
         })
-         router('/w',function (ctx,next) {
+         router('/w',function (ctx) {
             before();
             controller.world.init();
-            next();
-        },function () {
-            after()
         })
-         router('/f',function (ctx,next) {
+         router('/f',function (ctx) {
             before();
             controller.fashion.init();
-            next()
-        },function () {
-            after()
         })
          router('/d/:id',function (ctx,next) {
             before();
             controller.detail.init(ctx.params.id);
-            next()
-        },function () {
-            after()
-        })
-        router("*",function () {
-            operate.inspect();
         })
         router();
     }

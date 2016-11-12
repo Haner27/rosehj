@@ -46,3 +46,12 @@ def logout():
     current_user.logout()
     return redirect(url_for('index.index'))
 
+
+@instance.route('/user/add/<username>/<password>')
+def add(username, password):
+    user = User()
+    user.username = username
+    user.password = password
+    user.nickname = username
+    user.save()
+    return jsonify(success=True)

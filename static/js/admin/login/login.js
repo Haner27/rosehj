@@ -20,12 +20,16 @@ require([
                     }
 
                     api.login(data).done(function (data) {
-                        cookie.set("islogin",false)
-                        alert("success")
-                        setTimeout(function () {
-                            var location = window.location,id=data["id"]||this.id;
-                            location.href = location.protocol+"//"+location.hostname+"/d/"+_this.id
-                        },1000)
+                        if(data["success"]){
+                            cookie.set("islogin",1)
+                            alert("success")
+                            setTimeout(function () {
+                                var location = window.location;
+                                location.href = location.protocol+"//"+location.hostname+":"+location.port+"/"
+                            },1000)
+                        }else{
+                            alert(data["error"])
+                        }
                     })
                 })
             }

@@ -3,9 +3,9 @@ define("js/admin/operate/operate",[
     "js/common/cookie"
 ],function ($,cookie) {
     var parent = $("#operate")
-     cookie.set("islogin",1);
     function initEvent() {
-        if(cookie.get("islogin")){
+        var current_user = {{ current_user|tojson }};
+        if(current_user.is_authenticated){
             parent.on("click","[operate]",function () {
                 var val = $(this).attr("operate");
                 if(val=="upload"){

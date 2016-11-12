@@ -37,7 +37,7 @@ def login():
     user.login(remember_me)
     user.save()
 
-    return url_for('index.index')
+    return redirect(url_for('index.index'))
 
 
 @instance.route('/user/logout')

@@ -23,7 +23,7 @@ class Config(object):
     DATABASE_HOST = '127.0.0.1'
     DATABASE_PORT = 27017
     DATABASE_USERNAME = 'root'
-    DATABASE_PASSWORD = 'rosehj'
+    DATABASE_PASSWORD = ''
     DATABASE_URL = 'mongodb://{0}:{1}@{2}:{3}'.format(DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_HOST, DATABASE_PORT)
 
 conf = Config

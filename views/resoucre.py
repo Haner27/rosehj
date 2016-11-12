@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 from __future__ import unicode_literals
 
-from flask import Blueprint, request, url_for
+from flask import Blueprint, request, url_for, render_template
 from flask_login import login_required, current_user
 
 from . import res
@@ -98,7 +98,7 @@ def article_details():
                          next_data=next.as_dict() if next else None))
 
 
-@instance.route('/article/edit', methods=['POST'])
+@instance.route('/article/edit', methods=['GET', 'POST'])
 @login_required
 def article_edit():
     """
@@ -111,10 +111,11 @@ def article_edit():
     tags                # 标签ID列表
     :return:
     """
-
-    content_id = request.form.get('content_id')
-    if not content_id:
-        return res(Errors.PARAMS_REQUIRED)
+    content_id = request.args.get('content_id') or request.form.get('content_id')
+    if request.method == 'GET':
+        if not content_id:
+            return res(Errors.PARAMS_REQUIRED)
+        return render_template('edit.html')
 
     title = request.form.get('title')
     if not title:

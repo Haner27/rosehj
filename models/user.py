@@ -37,5 +37,4 @@ class User(UserMixin, BaseDocument):
         logout_user()
 
     def verify_password(self, password):
-        md5 = MD5(password)
-        return self.password == md5.add_salt(current_app.config.get('SALT'))
+        return self.password == password

@@ -80,11 +80,6 @@ class Reply(BaseDocument):
         if 'deleted_at' in dic:
             del dic['deleted_at']
 
-        if not self.parent_id:
-            replies = []
-            for r in self.__class__.objects(parent_id=self.id).order_by('created_at'):
-                replies.append(r.as_dict())
-            dic['replies'] = replies
         return dic
 
 
@@ -107,7 +102,7 @@ class CommentText(BaseDocument):
     @property
     def replies(self):
         rs = []
-        for r in Reply.objects(comment_id=self.id, parent_id='', deleted_at=None).order_by('created_at'):
+        for r in Reply.objects(comment_id=self.id, deleted_at=None).order_by('created_at'):
             rs.append(r.as_dict())
         return rs
 

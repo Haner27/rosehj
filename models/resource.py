@@ -8,6 +8,7 @@ from flask import url_for
 from . import BaseDocument, register_pre_save
 from configs.config import conf
 from utils.datetime_utils import format_datetime
+from models.user import User
 
 
 @register_pre_save()
@@ -16,7 +17,7 @@ class Resource(BaseDocument):
     VIDEO = 2
 
     # 上传文件格式设置
-    ALLOWED_FORMATS = ['jpg', 'png', 'jpeg', 'gif', 'rm', 'rmvb', 'wmv', 'avi', 'mp4', '3gp', 'mkv']
+    ALLOWED_FORMATS = ['jpg', 'png', 'jpeg', 'gif', 'rm', 'rmvb', 'wmv', 'avi', 'mp4', '3gp', 'mkv', 'ogg']
 
     # 上传文件大小上线
     ALLOWED_MAX_SIZE = 200 * 1024 ** 2  # 200M
@@ -178,4 +179,6 @@ class Content(BaseDocument):
         dic = dict(self.to_mongo())
         dic['comments'] = self.comments
         dic['created_at'] = format_datetime(self.created_at, '%b %d, %Y')
+        u = User.objects(id=self.author_id).first()
+        dic['author_name'] = u.nickname if u else '-'
         return dic

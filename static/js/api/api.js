@@ -43,6 +43,26 @@ define("js/api/api",[
                 }
             })
         },
+        "submitComment":function (params) {
+            return $.ajax({
+                "url":"/article/comment",
+                "type":"post",
+                "data":params,
+                "error":function () {
+                    console.log("submitComment error")
+                }
+            })
+        },
+        "submitReply":function (params) {
+            return $.ajax({
+                "url":"/comment/reply",
+                "type":"post",
+                "data":params,
+                "error":function () {
+                    console.log("submitComment error")
+                }
+            })
+        },
         "login":function (params) {
             return $.ajax({
                 "url":"/user/admin",

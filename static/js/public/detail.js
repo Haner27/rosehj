@@ -9,22 +9,27 @@ define("js/public/detail",[
             var app = {
                 "init":function (params) {
                     this.id = params["id"];
-                    this.parent = params["parent"]
+                    this.parent = params["parent"];
+                    this.data = params["data"]
                     this.renderDetail()
                 },
                 "renderDetail":function (id) {
                     var self = this;
                     this["id"]=id||this.id;
                     this.parent.hide()
-                    api.queryDetail(this.id).done(function (data) {
-                        if(data["code"]==0){
-                            self.__renderDetail(data["detail"])
-                            self.parent.stop().fadeIn(1000)
-                        }else{
-                            alert(data["error"])
-                        }
-                    })
-
+                    if(!this.data){
+                        api.queryDetail(this.id).done(function (data) {
+                            if(data["code"]==0){
+                                self.__renderDetail(data["detail"])
+                                self.parent.stop().fadeIn(1000)
+                            }else{
+                                alert(data["error"])
+                            }
+                        })
+                    }else{
+                        self.__renderDetail(this.data["detail"]);
+                        self.parent.stop().fadeIn(1000)
+                    }
                 },
                 getType:function (id) {
                     if(id==1){

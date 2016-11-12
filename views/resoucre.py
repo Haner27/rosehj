@@ -307,14 +307,14 @@ def comment_reply():
 
     if parent_id:  # 子回复
         r = Reply.objects(id=parent_id).first()
-        notify_follow_up = r.notify_follow_up
-        to_nickname = r.nickname
-        to_email = r.email
+        notify_follow_up = r.notify_follow_up if r else None
+        to_nickname = r.nickname if r else '-'
+        to_email = r.email if r else '-'
     else:  # 一级回复
         ct = CommentText.objects(id=comment_id).first()
-        notify_follow_up = ct.notify_follow_up
-        to_nickname = ct.nickname
-        to_email = ct.email
+        notify_follow_up = ct.notify_follow_up if ct else None
+        to_nickname = ct.nickname if ct else '-'
+        to_email = ct.email if ct else '-'
 
     r = Reply()
     r.comment_id = comment_id

@@ -11,6 +11,10 @@ def before_request():
     pass
 
 
-@instance.route('/<regex(".*"):path>', methods=['GET'])
-def index(path=None):
-    return render_template('index.html', path=path)  # 主页
+@instance.route('/', methods=['GET'])
+@instance.route('/w', methods=['GET'])
+@instance.route('/f', methods=['GET'])
+@instance.route('/d/<page>', methods=['GET'])
+@instance.route('/c', methods=['GET'])
+def index(page=None):
+    return render_template('index.html', page=page)  # 主页

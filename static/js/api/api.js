@@ -31,7 +31,7 @@ define("js/api/api",[
         },
         "submitArticle":function (params) {
             return $.ajax({
-                "url":"../static/db/ar.json",
+                "url":"/article/edit",
                 "type":"post",
                 "data":params,
                 "error":function () {

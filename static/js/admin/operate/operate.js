@@ -2,18 +2,17 @@ define("js/admin/operate/operate",[
     "jquery",
     "js/common/cookie"
 ],function ($,cookie) {
-    var parent = $("#operate")
+    var parent = $("#operate");
     function initEvent() {
-        var current_user = {{ current_user|tojson }};
-        if(current_user.is_authenticated){
+        if(cookie.get("islogin")){
             parent.on("click","[operate]",function () {
                 var val = $(this).attr("operate");
                 if(val=="upload"){
 
                 }else if(val=="add"){
-
+                   window.location.href="/article/edit"
                 }else if(val=="edit"){
-
+                     alert(app.getId())
                 }else if(val=="delete"){
 
                 }
@@ -36,8 +35,8 @@ define("js/admin/operate/operate",[
             return exg.test(path);
         },
         "getId":function () {
-            var exp = /^[(\/d)|(\/c)]\/([0-9]+)/g,path = window.location.pathname
-            return path.match(exp)[0]
+            var exp = /^(\/d|\/c)(\/[0-9]+)/g,path = window.location.pathname,exc=exp.exec(path)
+            return exc&&exc[2].split("/")[1]
         },
         "updateView":function () {
             var html = [],canoperate="";

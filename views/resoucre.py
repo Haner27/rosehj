@@ -123,7 +123,7 @@ def article_edit():
     if not text:
         return res(Errors.PARAMS_REQUIRED)
 
-    from_id = request.form.get('from_id')
+    from_id = request.form.get('from_id', 1, type=int)
     if not from_id:
         return res(Errors.PARAMS_REQUIRED)
 
@@ -146,7 +146,7 @@ def article_edit():
 
     if mode == 'new':
         emails1 = CommentText.objects(notify_new_post=True).distinct('email')
-        emails2 = Reply.objects().distinct(notify_new_post=True).distinct('email')
+        emails2 = Reply.objects(notify_new_post=True).distinct('email')
         emails = list(set(emails1 + emails2))
         if emails:
             body = """

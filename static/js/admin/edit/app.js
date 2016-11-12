@@ -37,15 +37,18 @@ require([
                 this.submit.on("click",function () {
                     var data={
                         "title":_this.title.val(),
-                        "type":_this.type.val(),
-                        "content":ue.getContent()
+                        "from_id":_this.type.val(),
+                        "text":ue.getContent()
                     }
                     api.submitArticle(data).done(function (data) {
-                        alert("success")
-                        setTimeout(function () {
-                            var location = window.location,id=data["id"]||this.id;
-                            location.href = location.protocol+"//"+location.hostname+"/d/"+_this.id
-                        },1000)
+                        var a = data;
+                        if(data["code"]==0){
+                            setTimeout(function () {
+                                var location = window.location,id=data["detail"]["_id"]||this.id;
+                                location.href = "/d/"+id
+                            },1000)
+                        }
+
                     })
                 })
             }

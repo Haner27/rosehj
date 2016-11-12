@@ -6,7 +6,7 @@ define("js/common/cookie",[
            var Days = 30;  
            var exp  = new Date();  
            exp.setTime(exp.getTime() + this.days*24*60*60*1000);
-           document.cookie = key + "="+ value + ";expires=" + exp.toGMTString();
+           document.cookie = key + "="+ value + ";expires=" + exp.toGMTString()+";path=/";
        },
        "get":function (key) {
            var arr = document.cookie.match(new RegExp("(^| )"+key+"=([^;]*)(;|$)"));

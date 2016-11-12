@@ -30,7 +30,7 @@ define("js/common/page",[
     }
     Page.prototype.createView = function () {
          var html = '<div class="page"><a class="prev" page-prev><span>←</span>Older posts</a><a class="next" page-next>Newer posts <span>→</span></a></div>',
-             parent =this.option.page.parent;
+             parent =this.option.parent;
         this.option.page = $(html);
         parent&&parent.append(this.option.page)
     }

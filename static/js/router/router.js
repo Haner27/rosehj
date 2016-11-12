@@ -1,34 +1,57 @@
 define("js/router/router",[
     "jquery",
-    "director",
-    "js/page/controller"
-],function ($,director,controller) {
-    var routes = {
-        "/":function () {
+    "pageRouter",
+    "js/page/controller",
+    "js/admin/operate/operate"
+],function ($,router,controller,operate) {
+
+    function routerInit() {
+        var siteContent = $("[site-content]");
+        function before() {
+            siteContent.html("");
+        }
+        function after() {
+             operate.inspect();
+        }
+
+        router('/',function (ctx) {
+            before();
             controller.index.init();
-        },
-        //world
-        "/w":function () {
+
+        })
+         router('/w',function (ctx,next) {
+            before();
             controller.world.init();
-        },
-        //fashtion
-        '/f':function () {
+            next();
+        },function () {
+            after()
+        })
+         router('/f',function (ctx,next) {
+            before();
             controller.fashion.init();
-        },
-        //detail
-        '/d':function () {
-            
-        },
-        //admin
-        '/a':function () {
-            
+            next()
+        },function () {
+            after()
+        })
+         router('/d/:id',function (ctx,next) {
+            before();
+            controller.detail.init(ctx.params.id);
+            next()
+        },function () {
+            after()
+        })
+        router("*",function () {
+            operate.inspect();
+        })
+        router();
+    }
+
+
+
+    var routerProxy = {
+        "init":function () {
+            routerInit();
         }
-    },
-     router = director(routes);
-    router.configure({
-        "notfound":function () {
-            alert(1)
-        }
-    })
-    return router
+    }
+    return routerProxy
 })

@@ -7,7 +7,7 @@ define("js/page/world/app",[
         var app = {
             "init":function () {
                 articleList.init({
-                    "parent":$("#articleList"),
+                    "parent":$("[site-content]"),
                     "query":{}
                 })
             },

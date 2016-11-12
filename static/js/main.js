@@ -1,23 +1,11 @@
-requirejs.config({
-    baseUrl: "/static/",
-    paths: {
-        jquery:"lib/jquery/1.12.4/jquery",
-        // pageRouter:"lib/page/page",
-        director:"lib/director/director"
-    },
-    shim:{
-        director:{
-            exports:'Router',
-            deps:["jquery"]
-        }
-    }
-})
+
 require([
         "jquery",
         "js/router/router",
         "js/common/header",
+        "js/common/cookie"
     ],
-    function ($,router,header,page,index) {
+    function ($,router,header,cookie) {
         header.init();
         router.init();
     }

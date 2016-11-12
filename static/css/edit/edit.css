@@ -1,0 +1,44 @@
+.edit-page{
+    width: 800px;
+    margin: 0 auto;
+    padding-top: 25px;
+    padding-bottom: 50px;
+}
+.fl{
+    float: left;
+}
+.edit-page label{
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: block;
+    color:#989898;
+}
+.edit-type select{
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.edit-title input{
+    height: 20px;
+    width: 700px;
+    padding:5px 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    margin-bottom: 20px;
+}
+.edit-input{
+    clear: both;
+}
+.submit-edit{
+    display: block;
+    float: right;
+    padding: 5px 10px;
+    background-color:#D1D3D4;
+    cursor: pointer;
+    margin-top: -25px;
+}
+.submit-edit:hover{
+    background-color: #c2ccd1;
+}
+.uedit{
+    clear: both;
+}

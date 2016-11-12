@@ -1,0 +1,22 @@
+.operate{
+    padding: 20px 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #000000;
+    display: none;
+}
+.operate-btn{
+    display: inline-block;
+    margin-right: 5px;
+    padding: 5px 8px;
+    height: 14px;
+    line-height: 14px;
+    font-size: 14px;
+    color: #fff;
+}
+.operate-btn.disabled{
+    background-color: #00b38a;
+}
+.operate-btn.undisabled{
+    background-color: #c2ccd1;
+}

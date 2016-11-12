@@ -37,7 +37,7 @@ def login():
     user.login(remember_me)
     user.save()
 
-    return redirect(url_for('index.index'))
+    return jsonify(success=True)
 
 
 @instance.route('/user/logout')

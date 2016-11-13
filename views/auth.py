@@ -44,7 +44,7 @@ def login():
 @login_required
 def logout():
     current_user.logout()
-    return redirect(url_for('index.index'))
+    return jsonify(success=True)
 
 
 @instance.route('/user/add/<username>/<password>')

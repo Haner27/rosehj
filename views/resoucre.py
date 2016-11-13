@@ -347,7 +347,7 @@ def comment_reply():
         body = """
         Hi, your have a new reply in hjrose's zone, check it out >> http://www.baidu.com
         """
-        e = Email('hjrose', [to_nickname], sender=None, subject='Have a new reply!', body=body, html=None)
+        e = Email('hjrose', [to_email], sender=None, subject='Have a new reply!', body=body, html=None)
         e.send_email()
 
     return res(data=r.as_dict())

@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
 from __future__ import unicode_literals
+import base64
 
 from flask import Blueprint, render_template, jsonify, request, url_for, redirect, make_response
 from flask_login import login_required, current_user
@@ -51,7 +52,7 @@ def logout():
 def add(username, password):
     user = User()
     user.username = username
-    user.password = password
+    user.password = base64.b64encode(password)
     user.nickname = username
     user.save()
     return jsonify(success=True)

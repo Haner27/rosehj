@@ -1,19 +1,17 @@
 # -*- coding: utf8 -*-
 from __future__ import unicode_literals
+import base64
 from cStringIO import StringIO
 import os
 from random import randint
 import urllib2
 from bson import ObjectId
-from zipfile import ZipFile, ZIP_DEFLATED
 
-from flask import Blueprint, request, url_for, send_file, jsonify
+from flask import Blueprint, request, url_for, send_file, jsonify, render_template
 from flask_login import login_required
 
-from . import res
 from models import gfs
 from models.resource import Resource
-from errors import Errors
 from utils.md5_utils import MD5
 from utils.datetime_utils import now_lambda
 from configs.config import conf
@@ -29,6 +27,9 @@ def before_request():
 @instance.route('/file/upload', methods=['GET', 'POST'])
 @login_required
 def upload():
+    if request.method == 'GET':
+        return render_template('upload.html')
+
     action = request.args.get('action')
     if action == 'config':
         result = conf.UEDITOR_CONIFG
@@ -66,6 +67,22 @@ def upload():
                 "title": filename,
                 "original": filename
             }
+
+    # 涂鸦图片上传
+    elif action == 'uploadscrawl':
+        base64data = request.form['upfile']  # 这个表单名称以配置文件为准
+        filename = get_unique_name('png')
+        file_id = gfs.put(base64.b64decode(base64data), filename=filename, original_filename='涂鸦.png',
+                          content_type='image/png')
+
+        url = url_for('file.show', file_id=file_id)
+
+        result = {
+            "state": "SUCCESS",
+            "url": url,
+            "title": unicode(file_id),
+            "original": unicode(file_id)
+        }
 
     # 抓取远程图片
     elif action == 'catchimage':

@@ -76,8 +76,20 @@
     .menu-toggle {
         display: inline-block;
     }
+    .site-header-nav ul{
+        margin-bottom: 50px;
+    }
+    .site-header{
+        margin-bottom: 0px;
+    }
     .site-header-nav li{
         margin: 0 auto;
         display: block;
     }
+}
+@media (min-width:768px){
+    .site-header-nav ul{
+        display: block!important;
+    }
+
 }

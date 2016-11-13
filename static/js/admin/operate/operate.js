@@ -7,9 +7,12 @@ define("js/admin/operate/operate",[
     function initEvent() {
         if(cookie.get("islogin")){
             parent.on("click","[operate]",function () {
+                if($(this).hasClass("undisabled")){
+                    return ;
+                }
                 var val = $(this).attr("operate");
                 if(val=="upload"){
-                   window.location.href = "/file/upload"
+                   window.location.href = "/banner/upload"
                 }else if(val=="add"){
                    window.location.href="/article/edit"
                 }else if(val=="edit"){

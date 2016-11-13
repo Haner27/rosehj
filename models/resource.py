@@ -177,3 +177,26 @@ class Content(BaseDocument):
         u = User.objects(id=self.author_id).first()
         dic['author_name'] = u.nickname if u else '-'
         return dic
+
+
+@register_pre_save()
+class Banner(BaseDocument):
+    file_name = StringField(required=True)
+    file_id = StringField(required=True)
+    file_url = StringField(required=True)
+
+    meta = {
+        'collection': 'banner',
+        'db_alias': conf.DATABASE_NAME,
+        'strict': False
+    }
+
+    def as_dict(self):
+        dic = dict(self.to_mongo())
+        if 'created_at' in dic:
+            del dic['created_at']
+        if 'updated_at' in dic:
+            del dic['updated_at']
+        if 'deleted_at' in dic:
+            del dic['deleted_at']
+        return dic

@@ -11,7 +11,7 @@ from flask import Blueprint, request, url_for, send_file, jsonify, render_templa
 from flask_login import login_required
 
 from models import gfs
-from models.resource import Resource
+from models.resource import Resource, Banner
 from utils.md5_utils import MD5
 from utils.datetime_utils import now_lambda
 from configs.config import conf
@@ -67,6 +67,17 @@ def upload():
                 "title": filename,
                 "original": filename
             }
+
+            category = request.form.get('category', 'banner')
+            if category == 'banner':
+                b = Banner.objects(file_id=file_id, deleted_at=None).first()
+                if not b:
+                    b = Banner()
+
+                b.file_id = file_id
+                b.file_name = filename
+                b.file_url = url
+                b.save()
 
     # 涂鸦图片上传
     elif action == 'uploadscrawl':

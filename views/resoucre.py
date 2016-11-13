@@ -5,7 +5,7 @@ from flask import Blueprint, request, url_for, render_template
 from flask_login import login_required, current_user
 
 from . import res
-from models.resource import Resource, Content, CommentText, Reply
+from models.resource import Resource, Content, CommentText, Reply, Banner
 from errors import Errors
 from utils.datetime_utils import now_lambda
 from utils.mail_utils import Email
@@ -353,9 +353,9 @@ def comment_reply():
     return res(data=r.as_dict())
 
 
-
-
-
-
+@instance.route('get_last_banner')
+def get_last_banner():
+    b = Banner.objects().order_by('-updated_at').first()
+    return res(data=b.as_dict())
 
 

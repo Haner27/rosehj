@@ -8,7 +8,9 @@ body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
 }
-
+a{
+    text-decoration:none
+}
 .jumbotron {
     background: transparent url(../images/banner.jpg) repeat-x 50% 0%;
     color: #fff;
@@ -372,8 +374,6 @@ body {
 }
 
 
-
-
 /*demo样式*/
 #picker {
     display: inline-block;
@@ -560,7 +560,7 @@ a.travis {
 }
 
 #uploader .placeholder .webuploader-pick-hover {
-    background: #00a2d4;
+    background: #00BD92;
 }
 
 #uploader .placeholder .flashTip {

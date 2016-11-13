@@ -20,6 +20,7 @@ require([
                 this.type = $("#type");
                 this.title=$("#title");
                 this.submit=$("#submit");
+                this.cancel = $("#cancel")
                 this.__init();
                 this.initEvent();
             },
@@ -63,6 +64,9 @@ require([
                         }
 
                     })
+                })
+                this.cancel.on("click",function () {
+                    history.go(-1)
                 })
             }
         }

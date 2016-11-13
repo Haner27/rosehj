@@ -31,6 +31,13 @@ body{
 .edit-input{
     clear: both;
 }
+.btn-list{
+    margin-top: 20px;
+    text-align: center;
+}
+.btn-list a{
+    margin-right: 10px;
+}
 .submit-edit{
     display: inline-block;
     padding: 10px 20px;
@@ -40,9 +47,19 @@ body{
     cursor: pointer;
 
 }
+.submit-cancel{
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 3px;
+    background-color:#c3c3c3;
+    cursor: pointer;
+
+}
 .submit-edit:hover{
-    background-color: #c2ccd1;
+    background-color: #00BD92;
 }
 .uedit{
+    min-height: 400px;
     clear: both;
 }

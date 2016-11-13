@@ -9,12 +9,14 @@ from bson import ObjectId
 
 from flask import Blueprint, request, url_for, send_file, jsonify, render_template
 from flask_login import login_required
+from errors import Errors
 
 from models import gfs
 from models.resource import Resource, Banner
 from utils.md5_utils import MD5
 from utils.datetime_utils import now_lambda
 from configs.config import conf
+from views import res
 
 instance = Blueprint('file', __name__)
 
@@ -29,6 +31,42 @@ def before_request():
 def upload():
     if request.method == 'GET':
         return render_template('upload.html')
+
+
+    category = request.args.get('category', 'banner')
+    if category == 'banner':
+        f = request.files.get('file')
+        if not is_allowed_image_format(f.filename):
+            return res(code=Errors.UPLOAD_FORMAT_LIMITATION)
+
+        if not is_allowed_size(f):
+            return res(code=Errors.UPLOAD_SIZE_LIMITATION)
+
+        data = f.stream.read()
+        md5 = MD5(data).md5_content
+        exists = gfs.find_one({'md5': md5})
+        if not exists:
+            original_filename = f.filename
+            content_type = f.content_type
+            ext = os.path.splitext(f.filename)[-1].strip('.')
+            filename = get_unique_name(ext)
+            file_id = gfs.put(data, filename=filename, original_filename=original_filename, content_type=content_type)
+        else:
+            file_id = exists._id
+            filename = exists.filename
+
+        url = url_for('file.show', file_id=file_id)
+
+        b = Banner.objects(file_id=file_id, deleted_at=None).first()
+        if not b:
+            b = Banner()
+
+        b.file_id = unicode(file_id)
+        b.file_name = filename
+        b.file_url = url
+        b.save()
+        return res(data=dict(id=unicode(file_id), name=filename, url=url))
+
 
     action = request.args.get('action')
     if action == 'config':
@@ -67,17 +105,6 @@ def upload():
                 "title": filename,
                 "original": filename
             }
-
-            category = request.args.get('category', 'banner')
-            if category == 'banner':
-                b = Banner.objects(file_id=file_id, deleted_at=None).first()
-                if not b:
-                    b = Banner()
-
-                b.file_id = file_id
-                b.file_name = filename
-                b.file_url = url
-                b.save()
 
     # 涂鸦图片上传
     elif action == 'uploadscrawl':
@@ -154,6 +181,13 @@ def show(file_id):
 def is_allowed_format(file_name):
     ext = os.path.splitext(file_name)[-1].strip('.')
     if ext.lower() not in Resource.ALLOWED_FORMATS:
+        return False
+    return True
+
+
+def is_allowed_image_format(file_name):
+    ext = os.path.splitext(file_name)[-1].strip('.')
+    if ext.lower() not in Resource.ALLOWED_IMAGE:
         return False
     return True
 

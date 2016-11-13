@@ -18,6 +18,7 @@ class Resource(BaseDocument):
 
     # 上传文件格式设置
     ALLOWED_FORMATS = ['jpg', 'png', 'jpeg', 'gif', 'rm', 'rmvb', 'wmv', 'avi', 'mp4', '3gp', 'mkv', 'ogg']
+    ALLOWED_IMAGE = ['jpg', 'png', 'jpeg', 'gif']
 
     # 上传文件大小上线
     ALLOWED_MAX_SIZE = 200 * 1024 ** 2  # 200M

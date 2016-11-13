@@ -24,20 +24,23 @@ define("js/api/api",[
                 }
             })
         },
-        "queryReplace":function (id) {
-            return $.ajax({
-                "url":"../static/db/ar.json",
-                "type":"get",
-                "error":function () {
-                    console.log("queryDetail error")
-                }
-            })
-        },
         "submitArticle":function (params) {
             return $.ajax({
                 "url":"/article/edit",
                 "type":"post",
                 "data":params,
+                "error":function () {
+                    console.log("submitArticle error")
+                }
+            })
+        },
+        "deleteArticle":function (id) {
+            return $.ajax({
+                "url":"/article/delete",
+                "type":"post",
+                "data":{
+                    "article_id":id
+                },
                 "error":function () {
                     console.log("submitArticle error")
                 }

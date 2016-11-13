@@ -18,10 +18,8 @@ require([
                         "username":_this.name.val(),
                         "password":Base64.encode(_this.password.val())
                     }
-
                     api.login(data).done(function (data) {
                         if(data["success"]){
-                            cookie.set("islogin",1)
                             alert("success")
                             setTimeout(function () {
                                 var location = window.location;

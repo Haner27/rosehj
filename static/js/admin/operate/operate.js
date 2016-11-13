@@ -1,7 +1,8 @@
 define("js/admin/operate/operate",[
     "jquery",
-    "js/common/cookie"
-],function ($,cookie) {
+    "js/common/cookie",
+    "js/api/api"
+],function ($,cookie,api) {
     var parent = $("#operate");
     function initEvent() {
         if(cookie.get("islogin")){
@@ -14,13 +15,30 @@ define("js/admin/operate/operate",[
                 }else if(val=="edit"){
                      window.location.href="/article/edit?content_id="+app.getId();
                 }else if(val=="delete"){
-
+                    api.deleteArticle(app.getId()).done(function (data) {
+                        if(data["success"]){
+                            alert("success")
+                            window.location.href="/"
+                        }else{
+                            alert(data["error"])
+                        }
+                    })
+                }else if(val == "logout"){
+                    api.logout().done(function (data) {
+                        cookie.set("islogin",0);
+                        if(data["success"]){
+                            window.location.href = "/";
+                        }
+                    })
                 }
             })
         }
     }
     initEvent();
     var app = {
+        "init":function () {
+            this.inspect();
+        },
         "inspect":function () {
             parent.html("");
             if(Number(cookie.get("islogin"))){
@@ -49,6 +67,7 @@ define("js/admin/operate/operate",[
             }
             html.push('<a class="operate-btn '+canoperate+'" operate="edit">修改这篇文章</a>');
             html.push('<a class="operate-btn '+canoperate+'" operate="delete">删除这篇文章</a>');
+            html.push('<a class="operate-btn disabled" operate="logout">退出</a>');
             parent.html(html.join(""));
         }
     }

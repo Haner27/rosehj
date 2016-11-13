@@ -3,10 +3,11 @@ require([
         "jquery",
         "js/router/router",
         "js/common/header",
-        "js/common/cookie"
+        "js/admin/app"
     ],
-    function ($,router,header,cookie) {
+    function ($,router,header,admin) {
         header.init();
         router.init();
+        admin.init();
     }
 )

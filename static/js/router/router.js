@@ -2,14 +2,15 @@ define("js/router/router",[
     "jquery",
     "pageRouter",
     "js/page/controller",
-    "js/admin/operate/operate"
-],function ($,router,controller,operate) {
+    "js/admin/operate/operate",
+    "js/admin/app"
+],function ($,router,controller,operate,admin) {
 
     function routerInit() {
         var siteContent = $("[site-content]");
         function before() {
             siteContent.html("");
-            operate.inspect();
+            admin.init();
         }
 
         router('/',function (ctx) {

@@ -9,7 +9,7 @@ define("js/admin/operate/operate",[
             parent.on("click","[operate]",function () {
                 var val = $(this).attr("operate");
                 if(val=="upload"){
-
+                   window.location.href = "/file/upload"
                 }else if(val=="add"){
                    window.location.href="/article/edit"
                 }else if(val=="edit"){

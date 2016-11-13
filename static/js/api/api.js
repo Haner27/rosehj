@@ -93,6 +93,15 @@ define("js/api/api",[
                     console.log("logout error")
                 }
             })
+        },
+        "banner":function () {
+            return $.ajax({
+                "url":"/get_last_banner",
+                "type":"get",
+                "error":function () {
+                    console.log("logout error")
+                }
+            })
         }
     }
     return api

@@ -16,7 +16,15 @@
 }
 .operate-btn.disabled{
     background-color: #00b38a;
+    cursor: pointer;
+}
+.operate-btn.disabled:hover{
+    background-color: #00C79A;
+    color: #fff;
 }
 .operate-btn.undisabled{
     background-color: #c2ccd1;
+}
+.operate-btn.undisabled:hover{
+    color: #fff;
 }

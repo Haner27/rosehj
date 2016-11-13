@@ -29,6 +29,13 @@ define("js/router/router",[
             before();
             controller.detail.init(ctx.params.id);
         })
+         router('/c',function (ctx,next) {
+            before();
+            controller.contact.init();
+        })
+        router("*",function () {
+            alert(1);
+        })
         router();
     }
 

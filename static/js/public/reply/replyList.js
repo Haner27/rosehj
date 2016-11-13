@@ -69,7 +69,7 @@ define("js/public/reply/replyList",[
                     this.list.html(html)
                 },
                 getReplyView:function (data,parentId) {
-                    var replyHtml = new Reply(data._id,parentId).getHtml(),html="",toReplyList="";
+                    var replyHtml = new Reply(data.comment_id||data._id,parentId).getHtml(),html="",toReplyList="";
                     if(data["replies"]){
                         for(var i =0,replyData=data["replies"],length=replyData.length;i<length;i++){
                             toReplyList+=this.getReplyView(replyData[i],data._id)
@@ -110,24 +110,41 @@ define("js/public/reply/replyList",[
                             "content":reply.find("[comment-content]").val(),
                             "nickname":reply.find("[comment-name]").val(),
                             "email":reply.find("[comment-email]").val(),
-                            "website":reply.find("[comment-website]").val()
+                            "website":reply.find("[comment-website]").val(),
+                            "notify_new_post":reply.find("[notify-posts]").is(":checked")?1:0,
+                            "notify_follow_up":reply.find("[notify-comment]").is(":checked")?1:0
                         }
                         api.submitComment(params).done(function (data) {
-                            console.log(data)
+                            if(data["code"] == 0){
+                                alert("success")
+                                window.location.href = window.location.href
+                            }else{
+                                alert(data["error"])
+                            }
                         })
                     })
                     this.list.on("click","[sendReply]",function () {
 
-                        var parentId=$(this).attr("sendReply"),commentId=$(this).attr("sendReplyParent"),reply=_this.list.find("[reply="+parentId+"]"),params = {
+                        var commentId=$(this).attr("sendReply"),
+                            parentId=$(this).attr("sendReplyParent"),
+                            reply=$(this).parent().parent(),
+                            params = {
                             "comment_id":commentId,
                             "parent_id":parentId,
                             "content":reply.find("[comment-content]").val(),
                             "nickname":reply.find("[comment-name]").val(),
                             "email":reply.find("[comment-email]").val(),
-                            "website":reply.find("[comment-website]").val()
+                            "website":reply.find("[comment-website]").val(),
+                            "notify_new_post":reply.find("[notify-posts]").is(":checked")?1:0,
+                            "notify_follow_up":reply.find("[notify-comment]").is(":checked")?1:0
                         }
                         api.submitReply(params).done(function (data) {
-                            console.log(data)
+                            if(data["code"] == 0){
+                                alert("success")
+                                window.location.href = window.location.href
+                            }else{
+                                alert(data["error"])
+                            }
                         })
                     })
                 }

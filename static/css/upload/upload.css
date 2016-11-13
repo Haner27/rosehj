@@ -1,0 +1,9 @@
+body{
+    background-color: #00b38a;
+}
+.upload{
+    width: 600px;
+    height: 300px;
+    margin: 15% auto;
+    background-color: #fff;
+}

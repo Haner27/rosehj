@@ -3,10 +3,10 @@ define("js/common/cookie",[
    var cookie = {
        "days":30,
        "set":function (key,value) {
-           var Days = 30;  
+           var Days = 0;
            var exp  = new Date();  
            exp.setTime(exp.getTime() + this.days*24*60*60*1000);
-           document.cookie = key + "="+ value + ";expires=" + exp.toGMTString()+";path=/";
+           document.cookie = key + "="+ value + ";path=/";
        },
        "get":function (key) {
            var arr = document.cookie.match(new RegExp("(^| )"+key+"=([^;]*)(;|$)"));

@@ -59,7 +59,7 @@ define("js/api/api",[
                 "type":"post",
                 "data":params,
                 "error":function () {
-                    console.log("submitComment error")
+                    console.log("submitReply error")
                 }
             })
         },
@@ -69,7 +69,25 @@ define("js/api/api",[
                 "type":"post",
                 "data":params,
                 "error":function () {
-                    console.log("submitArticle error")
+                    console.log("login error")
+                }
+            })
+        },
+        "islogin":function () {
+            return $.ajax({
+                "url":"/user/islogin",
+                "type":"get",
+                "error":function () {
+                    console.log("islogin error")
+                }
+            })
+        },
+        "logout":function () {
+            return $.ajax({
+                "url":"/user/logout",
+                "type":"get",
+                "error":function () {
+                    console.log("logout error")
                 }
             })
         }

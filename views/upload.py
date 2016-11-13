@@ -32,8 +32,7 @@ def upload():
     if request.method == 'GET':
         return render_template('upload.html')
 
-
-    category = request.args.get('category', 'banner')
+    category = request.args.get('category')
     if category == 'banner':
         f = request.files.get('file')
         if not is_allowed_image_format(f.filename):

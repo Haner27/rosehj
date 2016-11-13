@@ -55,3 +55,8 @@ def add(username, password):
     user.nickname = username
     user.save()
     return jsonify(success=True)
+
+
+@instance.route('/user/islogin')
+def islogin():
+    return jsonify(success=current_user.is_authenticated)

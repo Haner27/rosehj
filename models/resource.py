@@ -119,25 +119,25 @@ class CommentText(BaseDocument):
         return dic
 
 
-@register_pre_save()
-class Tag(BaseDocument):
-    name = StringField(required=True)
-
-    meta = {
-        'collection': 'tag',
-        'db_alias': conf.DATABASE_NAME,
-        'strict': False
-    }
-
-    def as_dict(self):
-        dic = dict(self.to_mongo())
-        if 'created_at' in dic:
-            del dic['created_at']
-        if 'updated_at' in dic:
-            del dic['updated_at']
-        if 'deleted_at' in dic:
-            del dic['deleted_at']
-        return dic
+# @register_pre_save()
+# class Tag(BaseDocument):
+#     name = StringField(required=True)
+#
+#     meta = {
+#         'collection': 'tag',
+#         'db_alias': conf.DATABASE_NAME,
+#         'strict': False
+#     }
+#
+#     def as_dict(self):
+#         dic = dict(self.to_mongo())
+#         if 'created_at' in dic:
+#             del dic['created_at']
+#         if 'updated_at' in dic:
+#             del dic['updated_at']
+#         if 'deleted_at' in dic:
+#             del dic['deleted_at']
+#         return dic
 
 
 @register_pre_save()

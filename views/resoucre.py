@@ -5,7 +5,7 @@ from flask import Blueprint, request, url_for, render_template
 from flask_login import login_required, current_user
 
 from . import res
-from models.resource import Resource, Content, Tag, CommentText, Reply
+from models.resource import Resource, Content, CommentText, Reply
 from errors import Errors
 from utils.datetime_utils import now_lambda
 from utils.mail_utils import Email
@@ -91,8 +91,8 @@ def article_details():
     if not c:
         return res(Errors.NOT_FOUND)
 
-    pre = Content.objects(created_at__gt=c.created_at).order_by('created_at').first()
-    next = Content.objects(created_at__lt=c.created_at).order_by('-created_at').first()
+    pre = Content.objects(from_id=c.from_id, created_at__gt=c.created_at).order_by('created_at').first()
+    next = Content.objects(from_id=c.from_id, created_at__lt=c.created_at).order_by('-created_at').first()
 
     return res(data=dict(data=c.as_dict(),
                          pre_data=pre.as_dict() if pre else None,
@@ -132,12 +132,19 @@ def article_edit():
     # tags = request.form.getlist('tags[]', [])
     # if not tags:
     #     return res(Errors.PARAMS_REQUIRED)
+    if from_id == Content.FROM_CONTACT:
+        c = Content.objects(from_id=from_id, deleted_at=None).first()
+        mode = 'update'
+        if not c:
+            mode = 'new'
+            c = Content()
 
-    c = Content.objects(id=content_id, deleted_at=None).first()
-    mode = 'update'
-    if not c:
-        mode = 'new'
-        c = Content()
+    else:
+        c = Content.objects(id=content_id, deleted_at=None).first()
+        mode = 'update'
+        if not c:
+            mode = 'new'
+            c = Content()
 
     c.title = title
     c.text = text

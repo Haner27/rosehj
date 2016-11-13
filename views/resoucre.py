@@ -58,7 +58,7 @@ def article_index():
     :return:
     """
 
-    conditions = {}
+    conditions = {'deleted_at': None}
     from_id = request.form.get('from_id', 0, int)
     if from_id:
         conditions.update(from_id=from_id)
@@ -353,7 +353,11 @@ def comment_reply():
     return res(data=r.as_dict())
 
 
-
+@instance.route('/test')
+def test():
+    e = Email('hjrose', ['369685930@qq.com'], sender=None, subject='Have a new reply!', body='you have a new reply!', html=None)
+    e.send_email()
+    return res()
 
 
 

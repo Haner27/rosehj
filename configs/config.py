@@ -25,12 +25,10 @@ class Config(object):
     MAIL_PORT = 25
     MAIL_USE_TLS = True
     MAIL_USE_SSL = False
-    # MAIL_DEBUG = app.debug
     MAIL_USERNAME = 'ink_tech'
     MAIL_PASSWORD = 'haner27'
     MAIL_DEFAULT_SENDER = None
-    MAIL_MAX_EMAILS = 25 # 有些邮件服务器会限制一次连接中的发送邮件的上限。
-    # MAIL_SUPPRESS_SEND = app.testing
+    MAIL_MAX_EMAILS = 25
     MAIL_ASCII_ATTACHMENTS = True
 
     # mongodb 链接信息

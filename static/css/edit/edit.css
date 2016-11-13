@@ -1,9 +1,11 @@
-
+body{
+    background-color: #00b38a;
+}
 .edit-page{
     width: 800px;
     margin: 0 auto;
-    padding-top: 25px;
-    padding-bottom: 50px;
+    padding: 20px 30px;
+    background-color: #fff;
 }
 .fl{
     float: left;
@@ -30,12 +32,13 @@
     clear: both;
 }
 .submit-edit{
-    display: block;
-    float: right;
-    padding: 5px 10px;
-    background-color:#D1D3D4;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 3px;
+    background-color:#00b38a;
     cursor: pointer;
-    margin-top: -25px;
+
 }
 .submit-edit:hover{
     background-color: #c2ccd1;

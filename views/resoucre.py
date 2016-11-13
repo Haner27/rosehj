@@ -160,9 +160,9 @@ def article_edit():
         emails = list(set(emails1 + emails2))
         if emails:
             body = """
-            Hi, I have new posts, como here >> http://www.baidu.com
+            Hi, I have new posts, come here >> http://www.baidu.com
             """
-            e = Email('hjrose', emails, sender=None, subject='Have a new reply!', body=body, html=None)
+            e = Email('ink_tech@126.com', emails, sender='rosehj', subject='Have a new reply!', body=body, html=None)
             e.send_email()
 
     return res(data=c.as_dict())
@@ -345,19 +345,13 @@ def comment_reply():
 
     if notify_follow_up:
         body = """
-        Hi, your have a new reply in hjrose's zone, check it out >> http://www.baidu.com
+        Hi, your have a new reply in rosehj's zone, check it out >> http://www.baidu.com
         """
-        e = Email('hjrose', [to_email], sender=None, subject='Have a new reply!', body=body, html=None)
+        e = Email('ink_tech@126.com', [to_email], sender='rosehj', subject='Have a new reply!', body=body, html=None)
         e.send_email()
 
     return res(data=r.as_dict())
 
-
-@instance.route('/test')
-def test():
-    e = Email('hjrose', ['369685930@qq.com'], sender=None, subject='Have a new reply!', body='you have a new reply!', html=None)
-    e.send_email()
-    return res()
 
 
 

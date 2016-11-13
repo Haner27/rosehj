@@ -10,7 +10,7 @@ from app import create_app
 # manager配置
 rosehj = create_app()
 manager = Manager(rosehj)
-manager.add_command("runserver", Server(threaded=True, port=8003))
+manager.add_command("runserver", Server(threaded=True))
 
 
 @rosehj.before_request

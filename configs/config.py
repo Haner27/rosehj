@@ -12,7 +12,6 @@ def _build_ueditor_config():
     return temp
 
 
-
 class Config(object):
     DEBUG = True
     SECRET_KEY = 'h!a@n#n$e%n^g&f*a(n)g_i+n.k'
@@ -26,7 +25,7 @@ class Config(object):
     MAIL_USE_TLS = True
     MAIL_USE_SSL = False
     MAIL_USERNAME = 'ink_tech'
-    MAIL_PASSWORD = 'haner27'
+    MAIL_PASSWORD = 'mqhaner27'
     MAIL_DEFAULT_SENDER = None
     MAIL_MAX_EMAILS = 25
     MAIL_ASCII_ATTACHMENTS = True

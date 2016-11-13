@@ -55,9 +55,10 @@ def __config_blueprint(app):
 def create_app():
     app = Flask(__name__)
 
-    mail.init_app(app)
     # 读配置文件
     app.config.from_object(conf)
+
+    mail.init_app(app)
     # flask扩展
     login_manager.init_app(app)
     # 添加正则url匹配转换器

@@ -26,9 +26,8 @@ def before_request():
     pass
 
 
-@instance.route('/file/upload', methods=['GET', 'POST'])
-@login_required
-def upload():
+@instance.route('/banner/upload', methods=['GET', 'POST'])
+def banner_upload():
     if request.method == 'GET':
         return render_template('upload.html')
 
@@ -65,8 +64,12 @@ def upload():
         b.file_url = url
         b.save()
         return res(data=dict(id=unicode(file_id), name=filename, url=url))
+    return res()
 
 
+@instance.route('/file/upload', methods=['GET', 'POST'])
+@login_required
+def upload():
     action = request.args.get('action')
     if action == 'config':
         result = conf.UEDITOR_CONIFG

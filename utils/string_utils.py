@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
 from __future__ import unicode_literals
+import re
 
 
 def camel_to_underscore_line(name):
@@ -22,3 +23,12 @@ def get_upper_letters(s):
             m += c
 
     return m
+
+
+def check_email(subject):
+    regex = ur"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+    match = re.search(regex, subject)
+    if not match:
+        return False
+    else:
+        return True

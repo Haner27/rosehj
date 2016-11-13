@@ -356,6 +356,6 @@ def comment_reply():
 @instance.route('/get_last_banner')
 def get_last_banner():
     b = Banner.objects().order_by('-updated_at').first()
-    return res(data=b.as_dict())
+    return res(data=b.as_dict() or {})
 
 

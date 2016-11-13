@@ -9,6 +9,7 @@ from models.resource import Resource, Content, CommentText, Reply
 from errors import Errors
 from utils.datetime_utils import now_lambda
 from utils.mail_utils import Email
+from utils.string_utils import check_email
 
 instance = Blueprint('resource', __name__)
 
@@ -273,6 +274,9 @@ def article_comment():
     if not content_id or not content or not nickname or not email:
         return res(Errors.PARAMS_REQUIRED)
 
+    if not check_email(email):
+        return res(Errors.EMAIL_FORMAT_ERROR)
+
     ct = CommentText()
     ct.content_id = content_id
     ct.nickname = nickname
@@ -311,6 +315,9 @@ def comment_reply():
 
     if not comment_id or not content or not nickname or not email:
         return res(Errors.PARAMS_REQUIRED)
+
+    if not check_email(email):
+        return res(Errors.EMAIL_FORMAT_ERROR)
 
     if parent_id:  # 子回复
         r = Reply.objects(id=parent_id).first()

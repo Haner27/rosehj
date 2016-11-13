@@ -68,7 +68,7 @@ def upload():
                 "original": filename
             }
 
-            category = request.form.get('category', 'banner')
+            category = request.args.get('category', 'banner')
             if category == 'banner':
                 b = Banner.objects(file_id=file_id, deleted_at=None).first()
                 if not b:

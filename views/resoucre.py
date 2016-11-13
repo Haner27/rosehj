@@ -162,7 +162,7 @@ def article_edit():
             body = """
             Hi, I have new posts, come here >> http://www.baidu.com
             """
-            e = Email('ink_tech@126.com', emails, sender='rosehj', subject='Have a new reply!', body=body, html=None)
+            e = Email('ink_tech@126.com', emails, sender='rosehj', subject='Have a new posts!', body=body, html=None)
             e.send_email()
 
     return res(data=c.as_dict())

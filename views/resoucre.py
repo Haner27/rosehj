@@ -8,7 +8,6 @@ from . import res
 from models.resource import Resource, Content, CommentText, Reply, Banner
 from errors import Errors
 from utils.datetime_utils import now_lambda
-from utils.mail_utils import Email
 from utils.string_utils import check_email
 
 instance = Blueprint('resource', __name__)
@@ -162,6 +161,7 @@ def article_edit():
             body = """
             Hi, I have new posts, come here >> http://www.baidu.com
             """
+            from utils.mail_utils import Email
             e = Email('ink_tech@126.com', emails, sender='rosehj', subject='Have a new posts!', body=body, html=None)
             e.send_email()
 
@@ -347,6 +347,7 @@ def comment_reply():
         body = """
         Hi, your have a new reply in rosehj's zone, check it out >> http://www.baidu.com
         """
+        from utils.mail_utils import Email
         e = Email('ink_tech@126.com', [to_email], sender='rosehj', subject='Have a new reply!', body=body, html=None)
         e.send_email()
 

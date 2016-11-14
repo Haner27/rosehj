@@ -12,7 +12,6 @@ def _build_ueditor_config():
     return temp
 
 
-
 class Config(object):
     DEBUG = True
     SECRET_KEY = 'h!a@n#n$e%n^g&f*a(n)g_i+n.k'

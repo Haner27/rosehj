@@ -1,1 +1,10 @@
-/*可以在这里添加你自己的css*/
+img {
+    margin: 0 1px;
+    padding: 1px;
+    width: 18px;
+    height: 18px;
+}
+p {
+    vertical-align: middle;
+    letter-spacing: 1px;
+}

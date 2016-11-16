@@ -360,3 +360,14 @@ def get_last_banner():
     return res(data=b.as_dict() if b else {})
 
 
+@instance.route('/get_contact', methods=['GET', 'POST'])
+def get_contact():
+    if request.method == 'GET':
+        return render_template('contact.html')
+
+    c = Content.objects(from_id=Content.FROM_CONTACT, deleted_at=None).first()
+    if not c:
+        return res(Errors.NOT_FOUND)
+
+    return res(data=dict(data=c.as_dict()))
+

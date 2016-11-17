@@ -102,6 +102,15 @@ define("js/api/api",[
                     console.log("logout error")
                 }
             })
+        },
+        "queryContact":function () {
+            return $.ajax({
+                "url":"/get_contact",
+                "type":"post",
+                "error":function () {
+                    console.log("logout error")
+                }
+            })
         }
     }
     return api

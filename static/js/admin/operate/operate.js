@@ -61,16 +61,16 @@ define("js/admin/operate/operate",[
         },
         "updateView":function () {
             var html = [],canoperate="";
-            html.push('<a class="operate-btn disabled" operate="upload">上传首页图</a>');
-            html.push('<a class="operate-btn disabled" operate="add">新增</a>');
+            html.push('<a class="operate-btn disabled" operate="upload">banner</a>');
+            html.push('<a class="operate-btn disabled" operate="add">add</a>');
             if(this.canoperate()){
                 canoperate = "disabled";
             }else{
                 canoperate = "undisabled";
             }
-            html.push('<a class="operate-btn '+canoperate+'" operate="edit">修改这篇文章</a>');
-            html.push('<a class="operate-btn '+canoperate+'" operate="delete">删除这篇文章</a>');
-            html.push('<a class="operate-btn disabled" operate="logout">退出</a>');
+            html.push('<a class="operate-btn '+canoperate+'" operate="edit">edit this article</a>');
+            html.push('<a class="operate-btn '+canoperate+'" operate="delete">delete this article</a>');
+            html.push('<a class="operate-btn disabled" operate="logout">exit</a>');
             parent.html(html.join(""));
         }
     }

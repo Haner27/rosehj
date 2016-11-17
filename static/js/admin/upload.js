@@ -64,7 +64,7 @@ jQuery(function() {
     uploader = WebUploader.create({
         pick: {
             id: '#filePicker',
-            label: '点击选择图片'
+            label: 'choose a picture'
         },
         dnd: '#uploader .queueList',
         paste: document.body,
@@ -91,7 +91,7 @@ jQuery(function() {
     // 添加“添加文件”的按钮，
     uploader.addButton({
         id: '#filePicker2',
-        label: '继续添加'
+        label: 'keep on'
     });
 
     // 当有文件添加进来时执行，负责view的创建
@@ -265,8 +265,7 @@ jQuery(function() {
         var text = '', stats;
 
         if ( state === 'ready' ) {
-            text = '选中' + fileCount + '张图片，共' +
-                    WebUploader.formatSize( fileSize ) + '。';
+            text =  WebUploader.formatSize( fileSize ) + '。';
         } else if ( state === 'confirm' ) {
             stats = uploader.getStats();
             if ( stats.uploadFailNum ) {
@@ -276,12 +275,10 @@ jQuery(function() {
 
         } else {
             stats = uploader.getStats();
-            text = '共' + fileCount + '张（' +
-                    WebUploader.formatSize( fileSize )  +
-                    '），已上传' + stats.successNum + '张';
+            text = 'uploaded ' + stats.successNum ;
 
             if ( stats.uploadFailNum ) {
-                text += '，失败' + stats.uploadFailNum + '张';
+                text += 'fail ' + stats.uploadFailNum + '';
             }
         }
 
@@ -320,17 +317,17 @@ jQuery(function() {
             case 'uploading':
                 $( '#filePicker2' ).addClass( 'element-invisible' );
                 $progress.show();
-                $upload.text( '暂停上传' );
+                $upload.text( 'stop' );
                 break;
 
             case 'paused':
                 $progress.show();
-                $upload.text( '继续上传' );
+                $upload.text( 'keep on' );
                 break;
 
             case 'confirm':
                 $progress.hide();
-                $upload.text( '开始上传' ).addClass( 'disabled' );
+                $upload.text( 'start' ).addClass( 'disabled' );
 
                 stats = uploader.getStats();
                 if ( stats.successNum && !stats.uploadFailNum ) {
@@ -341,7 +338,7 @@ jQuery(function() {
             case 'finish':
                 stats = uploader.getStats();
                 if ( stats.successNum ) {
-                    alert( '上传成功' );
+                    alert( 'success' );
                     window.location.href="/"
                 } else {
                     // 没有成功的图片，重设

@@ -97,6 +97,46 @@ define("js/public/reply/replyList",[
                            '</div>'
                     return html
                 },
+                validate:function (parent) {
+                    var content = parent.find("[comment-content]"),
+                     name = parent.find("[comment-name]"),
+                     email= parent.find("[comment-email]"),
+                     canSubmit= true,
+                     emailReg = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/g;
+
+                    if($.trim(content.val())==""){
+                        content.parent().addClass("input-error");
+                        content.parent().find(".input-error-message").html("回复内容不能为空")
+                        canSubmit = false;
+                    }else{
+                        content.parent().removeClass("input-error");
+                        content.parent().find(".input-error-message").html("")
+                    }
+
+                    if($.trim(name.val())==""){
+                        name.parent().addClass("input-error");
+                        name.parent().find(".input-error-message").html("姓名不能为空")
+                        canSubmit = false;
+                    }else{
+                        name.parent().removeClass("input-error");
+                        name.parent().find(".input-error-message").html("")
+                    }
+
+                    if($.trim(email.val())==""){
+                        email.parent().addClass("input-error");
+                        email.parent().find(".input-error-message").html("emai不能为空")
+                        canSubmit = false;
+                    }else if(!emailReg.test($.trim(email.val()))){
+                        email.parent().addClass("input-error");
+                        email.parent().find(".input-error-message").html("emai格式错误")
+                        canSubmit = false;
+                    }else{
+                        email.parent().removeClass("input-error");
+                        email.parent().find(".input-error-message").html("")
+                    }
+
+                    return canSubmit;
+                },
                 "initEvent":function () {
                     var _this = this;
                     this.list.on("click","[replay-message-answer]",function () {
@@ -113,6 +153,9 @@ define("js/public/reply/replyList",[
                             "website":reply.find("[comment-website]").val(),
                             "notify_new_post":reply.find("[notify-posts]").is(":checked")?1:0,
                             "notify_follow_up":reply.find("[notify-comment]").is(":checked")?1:0
+                        }
+                        if(!_this.validate(reply)){
+                            return ;
                         }
                         api.submitComment(params).done(function (data) {
                             if(data["code"] == 0){
@@ -137,6 +180,9 @@ define("js/public/reply/replyList",[
                             "website":reply.find("[comment-website]").val(),
                             "notify_new_post":reply.find("[notify-posts]").is(":checked")?1:0,
                             "notify_follow_up":reply.find("[notify-comment]").is(":checked")?1:0
+                        }
+                        if(!_this.validate(reply)){
+                            return ;
                         }
                         api.submitReply(params).done(function (data) {
                             if(data["code"] == 0){

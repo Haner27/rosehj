@@ -5,32 +5,15 @@ define("js/page/contact/app",[
         "js/api/api"
     ],
     function ($,detail,replyList,api) {
-        var app = {
+         var app = {
             "init":function (id) {
-                var _this = this;
-                api.queryArticle({
-                    "from_id":3,
-                    "page":1,
-                    "per_page":1
-                }).done(function (data) {
-                    if(data["code"]==0) {
-                        var contact = data["detail"]["data"]&&data["detail"]["data"][0]||null
-                        if(contact){
-                            // _this.id = contact._id;
-                            // _this.__init();
-                            // _this.render();
-                            window.location.href = '/d/'+contact._id
-                        }
-
-                    }else{
-                        alert(data["error"])
-                    }
-                })
-
+                this.id = id;
+                this.__init();
+                this.render();
             },
             "render":function () {
                 var _this = this;
-                api.queryDetail(this.id).done(function (data) {
+                api.queryContact().done(function (data) {
                     if(data["code"]==0){
                         detail.init({
                             "parent":_this.detail,

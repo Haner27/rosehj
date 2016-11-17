@@ -48,6 +48,10 @@ require([
             "initEvent":function () {
                 var _this=this;
                 this.submit.on("click",function () {
+                    if($(this).hasClass("disabled")){
+                        return ;
+                    }
+                    $(this).addClass("disabled")
                     var data={
                         "content_id":_this.id,
                         "title":_this.title.val(),
@@ -55,11 +59,16 @@ require([
                         "text":ue.getContent()
                     }
                     api.submitArticle(data).done(function (data) {
-                        var a = data;
+                        $(this).removeClass("disabled")
                         if(data["code"]==0){
                             setTimeout(function () {
                                 var location = window.location,id=data["detail"]["_id"]||this.id;
-                                location.href = "/d/"+id
+                                if(data["detail"]["from_id"]==3){
+                                    location.href = "/c"
+                                }else{
+                                    location.href = "/d/"+id
+                                }
+
                             },1000)
                         }
 

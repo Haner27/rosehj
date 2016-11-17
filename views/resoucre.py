@@ -367,7 +367,7 @@ def get_contact():
 
     c = Content.objects(from_id=Content.FROM_CONTACT, deleted_at=None).first()
     if not c:
-        return res(Errors.NOT_FOUND)
+        return res()
 
     return res(data=dict(data=c.as_dict()))
 

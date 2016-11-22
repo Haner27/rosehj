@@ -19,8 +19,8 @@ body{
 }
 .login input{
     width: 272px;
-    border-color: #f8f8f8;
-    background-color: #f8f8f8;
+    border-color: #eeeeee;
+    background-color: #eeeeee;
     outline: 0;
     height: 44px;
     padding-right: 13px;

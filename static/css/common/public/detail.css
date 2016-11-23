@@ -1,0 +1,9 @@
+.site-detail .site-content-card header  h2{
+    font-size:30px;
+    font-family: 'Libre Baskerville',Georgia,serif;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+.site-detail .site-content-card-detail,.site-detail footer{
+    padding-left: 30px;
+}

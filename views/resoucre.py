@@ -163,7 +163,7 @@ def article_edit():
             -- <b>RoseHJ</b>
             """.format(c.id)
             from utils.mail_utils import Email
-            e = Email('ink_tech@126.com', [str(e) for e in emails], sender='HJ Rose Fashion Critic',
+            e = Email('rosehj@163.com', [str(e) for e in emails], sender='HJ Rose Fashion Critic',
                       subject='Have a new reply!', body=None, html=html)
             e.send_email()
     return res(data=c.as_dict())
@@ -291,7 +291,7 @@ def comment_reply():
          -- <b>RoseHJ</b>
         """.format(content_id)
         from utils.mail_utils import Email
-        e = Email('ink_tech@126.com', [to_email], sender='HJ Rose Fashion Critic',
+        e = Email('rosehj@163.com', [to_email], sender='HJ Rose Fashion Critic',
                   subject='Have a new reply!', body=None, html=html)
         e.send_email()
 

@@ -106,7 +106,7 @@ define("js/public/reply/replyList",[
 
                     if($.trim(content.val())==""){
                         content.parent().addClass("input-error");
-                        content.parent().find(".input-error-message").html("回复内容不能为空")
+                        content.parent().find(".input-error-message").html("required field")
                         canSubmit = false;
                     }else{
                         content.parent().removeClass("input-error");
@@ -115,7 +115,7 @@ define("js/public/reply/replyList",[
 
                     if($.trim(name.val())==""){
                         name.parent().addClass("input-error");
-                        name.parent().find(".input-error-message").html("姓名不能为空")
+                        name.parent().find(".input-error-message").html("required field")
                         canSubmit = false;
                     }else{
                         name.parent().removeClass("input-error");
@@ -124,11 +124,11 @@ define("js/public/reply/replyList",[
 
                     if($.trim(email.val())==""){
                         email.parent().addClass("input-error");
-                        email.parent().find(".input-error-message").html("emai不能为空")
+                        email.parent().find(".input-error-message").html("required field")
                         canSubmit = false;
                     }else if(!emailReg.test($.trim(email.val()))){
                         email.parent().addClass("input-error");
-                        email.parent().find(".input-error-message").html("emai格式错误")
+                        email.parent().find(".input-error-message").html("required field")
                         canSubmit = false;
                     }else{
                         email.parent().removeClass("input-error");

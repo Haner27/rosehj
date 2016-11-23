@@ -174,6 +174,7 @@ define("js/public/reply/replyList",[
                             params = {
                             "comment_id":commentId,
                             "parent_id":parentId,
+                            "content_id":_this.id,
                             "content":reply.find("[comment-content]").val(),
                             "nickname":reply.find("[comment-name]").val(),
                             "email":reply.find("[comment-email]").val(),

@@ -20,12 +20,12 @@ class Config(object):
 
     UEDITOR_CONIFG = _build_ueditor_config()
 
-    MAIL_SERVER = 'smtp.163.com'
+    MAIL_SERVER = 'smtp.126.com'
     MAIL_PORT = 25
     MAIL_USE_TLS = False
     MAIL_USE_SSL = False
-    MAIL_USERNAME = 'rosehj'
-    MAIL_PASSWORD = 'rosehj123456'
+    MAIL_USERNAME = 'ink_tech'
+    MAIL_PASSWORD = 'mqhaner27'
     MAIL_DEFAULT_SENDER = None
     MAIL_MAX_EMAILS = 25
     MAIL_ASCII_ATTACHMENTS = True

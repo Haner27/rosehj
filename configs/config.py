@@ -26,7 +26,7 @@ class Config(object):
     # MAIL_USE_SSL = False
     # MAIL_USERNAME = 'rosehj'
     # MAIL_PASSWORD = 'rosehj123456'
-    MAIL_DEFAULT_SENDER = 'admin@rosehj.com'
+    MAIL_DEFAULT_SENDER = 'from@rosehj.com'
     MAIL_MAX_EMAILS = 25
     MAIL_ASCII_ATTACHMENTS = True
 

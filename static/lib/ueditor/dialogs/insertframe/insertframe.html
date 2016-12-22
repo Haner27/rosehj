@@ -79,7 +79,7 @@
         }else{
             div = editor.document.createElement("div");
             div.appendChild(newIframe);
-            editor.execCommand("inserthtml",div.innerHTML);
+            editor.execCommand("inserthtml",div.innerHTML, true);
         }
         editor._iframe = null;
         dialog.close();

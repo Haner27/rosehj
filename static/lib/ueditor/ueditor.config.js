@@ -41,7 +41,7 @@
             'indent', '|',
             'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
             'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-            'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo','map', 'gmap', 'background', '|',
+            'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo','map', 'gmap', 'insertframe', 'background', '|',
             'horizontal', 'date', 'time', 'spechars', '|',
             'preview', 'searchreplace', 'drafts', 'help'
         ]]
@@ -82,7 +82,7 @@
         //如果自定义，最好给p标签如下的行高，要不输入中文时，会有跳动感
         //,initialStyle:'p{line-height:1em}'//编辑器层级的基数,可以用来改变字体等
 
-        //,iframeCssUrl: URL + '/themes/iframe.css' //给编辑区域的iframe引入一个css文件
+        ,iframeCssUrl: URL + '/themes/iframe.css' //给编辑区域的iframe引入一个css文件
 
         //indentValue
         //首行缩进距离,默认是2em
@@ -427,7 +427,8 @@
             video:  ['autoplay', 'controls', 'loop', 'preload', 'src', 'height', 'width', 'class', 'style'],
             source: ['src', 'type'],
             embed:  ['type', 'class', 'pluginspage', 'src', 'width', 'height', 'align', 'style', 'wmode', 'play',
-                    'loop', 'menu', 'allowscriptaccess', 'allowfullscreen']
+                    'loop', 'menu', 'allowscriptaccess', 'allowfullscreen'],
+			iframe:  ['class', 'style', 'allowfullscreen', 'width', 'height', 'frameborder', 'src']
 		}
     };
 

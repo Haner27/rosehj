@@ -48,14 +48,14 @@ def logout():
     return jsonify(success=True)
 
 
-@instance.route('/user/add/<username>/<password>')
-def add(username, password):
-    user = User()
-    user.username = username
-    user.password = base64.b64encode(password)
-    user.nickname = username
-    user.save()
-    return jsonify(success=True)
+#@instance.route('/user/add/<username>/<password>')
+#def add(username, password):
+#    user = User()
+#    user.username = username
+#    user.password = base64.b64encode(password)
+#    user.nickname = username
+#    user.save()
+#    return jsonify(success=True)
 
 
 @instance.route('/user/islogin')
